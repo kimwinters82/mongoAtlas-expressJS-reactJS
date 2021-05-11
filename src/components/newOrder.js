@@ -26,8 +26,6 @@ class NewOrder extends Component {
   }
   postOrder = (e) => {
       e.preventDefault();
-    //   const id = "608d68810c011c24900aa1ba"; 
-    //   const a = "608d68890c011c24900aa1cb";
       const options ={
             method: 'POST',
             headers:{
