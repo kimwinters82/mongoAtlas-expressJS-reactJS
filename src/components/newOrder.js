@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import './newOrder.css';
 
 class NewOrder extends Component {
   constructor(props) {
@@ -43,6 +42,8 @@ class NewOrder extends Component {
   render() {
     return (
         <div className="underNav">
+        <h3>Create a new Order</h3>
+        <p>To create an order, please select a customer from the customer list and a phone from the items list</p>
         <label name="Customer"><b>Customer:</b></label>
         <select value ={this.state.customer} onChange={this.handleCust}>
           <option>Please select</option>
@@ -59,7 +60,7 @@ class NewOrder extends Component {
             {i.Manufacturer} {i.Model}
             </option> ))}  
         </select>
-        <button onClick={this.postOrder}>Submit</button>
+        <button className="buttonStyle" onClick={this.postOrder}>Create New Order</button>
         {this.state.customer && console.log(this.state.customer)}
         {this.state.phone && console.log(this.state.phone)}
       </div>

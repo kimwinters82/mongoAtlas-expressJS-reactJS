@@ -30,12 +30,12 @@ class ItemsReact extends Component {
     return (
         <div className="underNav">
         <Link to= "/newItem"><button className="buttonStyle">Create New Item</button></Link>
+        <Link to= "/newItem"><button className="buttonStyle">Update Item</button></Link>
         {this.state.items.map((c) =>(
           <p key={c._id}>
-            <h3>{c.Manufacturer}</h3> <div>{c.Model} €{c.Price}</div>
-            <div>
-              <button className="buttonStyle" onClick={() => this.updateItem(c._id)}>Update</button>
-              <button className="buttonStyle" onClick={() => this.deleteItem(c._id)}>Delete</button>
+            <h3>{c.Manufacturer} {c.Model}</h3> 
+            <div> Price: €{c.Price}
+              <button className="buttonStyle" onClick={() => this.deleteItem(c._id)}>Delete Item</button>
             </div>
           </p>
         ))}

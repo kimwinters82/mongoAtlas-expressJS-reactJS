@@ -45,7 +45,6 @@ class OrdersReact extends Component {
     .then(data => alert("Successfully deleted", data));
   }
   render() {
-    const {phone} = this.state;
     return (
         <div className="underNav">
         <Link to= "/newOrder"><button className="buttonStyle">Create New Order</button></Link>

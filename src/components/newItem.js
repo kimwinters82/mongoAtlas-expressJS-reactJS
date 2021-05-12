@@ -63,7 +63,8 @@ class NewItem extends Component {
       const {Manufacturer, Model, Price} = this.state;
     return (
         <div className="underNav">
-        
+        <h3>Update Item OR Add Item</h3>
+        <p>To update an items price: select item from the list and enter your new price.</p>
         <label name="Item"><b>Item:</b> </label> 
             <select value ={this.state.phone} onChange={this.handlePhone}>
                 <option>Please select</option>
@@ -72,8 +73,9 @@ class NewItem extends Component {
                     {i.Manufacturer} {i.Model}
                 </option> ))}  
             </select>
-            <button onClick={()=> this.setState({update:false})}>Reset</button>
-                
+            <button className="buttonStyle"onClick={()=> this.setState({update:false})}>Reset</button>
+            {this.state.update === false &&
+            <p>To create a new item: enter the manufacturer, model and price below.</p>  }      
         <form onSubmit={this.postItem}>
             {this.state.update === false && 
                 <label>Manufacturer: 
@@ -100,7 +102,7 @@ class NewItem extends Component {
                     value={Price}
                     onChange={this.changeHandler}
                 /></label>
-            <button type="submit" value="Submit"> {this.state.update === true ?"Update":"Create New Item"}</button>
+            <button className="buttonStyle"type="submit" value="Submit"> {this.state.update === true ?"Update":"Create New Item"}</button>
       </form>
       </div>
     ); // end of return statement

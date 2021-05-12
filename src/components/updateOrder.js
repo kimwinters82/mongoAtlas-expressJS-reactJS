@@ -42,6 +42,8 @@ class UpdateOrder extends Component {
   render() {
     return (
         <div className="underNav">
+        <h3>Update an existing Order</h3>
+        <p>To update an order, please select an order from the order list and a phone from the items list</p>
         <label name="Order"><b>Order:</b></label>
         <select value ={this.state.order} onChange={this.handleOrder}>
         <option>Please select</option>
@@ -58,7 +60,7 @@ class UpdateOrder extends Component {
             {i.Manufacturer} {i.Model}
             </option> ))}  
         </select>
-        <button onClick={this.updateOrder}>Submit</button>
+        <button onClick={this.updateOrder}>Update Order</button>
         {this.state.order && console.log(this.state.order)}
         {this.state.phone && console.log(this.state.phone)}
       </div>
