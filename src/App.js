@@ -4,6 +4,7 @@ import CustomersReact from './components/customersReact';
 import ItemsReact from './components/itemsReact';
 import OrdersReact from './components/ordersReact';
 import NewOrder from './components/newOrder';
+import UpdateOrder from './components/updateOrder';
 import NewCust from './components/newCust';
 import NewItem from './components/newItem';
 import{
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path="/newOrder">
             <NewOrder/>
+          </Route>
+          <Route path="/updateOrder">
+            <UpdateOrder/>
           </Route>
         </Switch> 
       </div>

@@ -10,11 +10,13 @@ class NewOrder extends Component {
         customer:"",
         phone: ""
     }
-    this.setCustState = this.setCustState.bind(this);
   }
 
-  setCustState = (id) => {
-    this.setState({customer: id})
+  handleCust = (e) => {
+    this.setState({customer: e.target.value})
+  }
+  handlePhone = (e) => {
+    this.setState({phone: e.target.value})
   }
   componentDidMount = () => {
     fetch('http://localhost:5000/customers')
@@ -35,28 +37,31 @@ class NewOrder extends Component {
         }  
   fetch(`http://localhost:5000/orders/${this.state.customer}`, options)
   .then(res=> res.json())
-  .then(data => console.log(data))
+  .then(data => alert("Successfully created new order", data))
   .catch(err => console.log(err)); 
   }
   render() {
     return (
         <div className="underNav">
-        
         <label name="Customer"><b>Customer:</b></label>
-        {this.state.customers.map((c) => (
-            <option key={c._id} onClick={()=>this.setCustState(c._id)}>
+        <select value ={this.state.customer} onChange={this.handleCust}>
+          <option>Please select</option>
+            {this.state.customers.map((c) => (
+            <option key={c._id} value={c._id} >
             {c.Firstname} {c.Surname}
-                </option> ))}                   
+            </option> ))}      
+        </select>             
         <label  name="Item"><b>Item:</b> </label> 
-        {this.state.items.map((i) => (
-            <option  key={i._id} onClick={()=> this.setState({phone: i._id})}>
+        <select value ={this.state.phone} onChange={this.handlePhone}>
+        <option>Please select</option>
+          {this.state.items.map((i) => (
+            <option  key={i._id} value={i._id} >
             {i.Manufacturer} {i.Model}
-                </option> ))}  
+            </option> ))}  
+        </select>
         <button onClick={this.postOrder}>Submit</button>
         {this.state.customer && console.log(this.state.customer)}
-        {this.state.phone.length > 0 && console.log(this.state.phone)}
-      
-      
+        {this.state.phone && console.log(this.state.phone)}
       </div>
     ); // end of return statement
   } // end of render function

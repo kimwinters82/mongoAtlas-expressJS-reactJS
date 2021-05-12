@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import './comp.css';
+import{
+  Link
+} from "react-router-dom";
 
 class CustomersReact extends Component {
   constructor(props) {
@@ -22,7 +25,7 @@ class CustomersReact extends Component {
   }
   updateCust(id){
     fetch(`http://localhost:5000/customers/${id}`,{
-      method: 'PUT',
+      method: 'PATCH',
       headers:{
         'Content-Type': 'application/json',
       },
@@ -30,8 +33,17 @@ class CustomersReact extends Component {
     })
     .then(res => res.json())
   }
+  //removes the customer from the customer collection
   deleteCust(id){
     fetch(`http://localhost:5000/customers/${id}`,{
+      method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data => alert("Successfully deleted"));
+  }
+  //removes all orders for the specified customer
+  deleteOrders(id){
+    fetch(`http://localhost:5000/orders/${id}`,{
       method: 'DELETE',
     })
     .then(res => res.json())
@@ -40,6 +52,7 @@ class CustomersReact extends Component {
   render() {
     return (
       <div className="underNav">
+        <Link to="/newCust"><button className="buttonStyle">Create New Customer</button></Link>
         {this.state.custFullDetails && console.log(this.state.custFullDetails)}
         {this.state.custorders && console.log(this.state.custorders)}
         {this.state.customers.map((c) =>(
@@ -52,6 +65,7 @@ class CustomersReact extends Component {
               <button className="buttonStyle" onClick={() => this.getOrders(c._id)}>See All Orders</button>
               <button className="buttonStyle" onClick={() => this.updateCust(c._id)}>Update Customer Account</button>
               <button className="buttonStyle" onClick={() => this.deleteCust(c._id)}>Delete Customer Account</button>
+              <button className="buttonStyle" onClick={() => this.deleteOrders(c._id)}>Delete All Orders</button>
             </div>
           </p>
         ))}
